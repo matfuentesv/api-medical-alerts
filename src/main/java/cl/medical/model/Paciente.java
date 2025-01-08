@@ -42,51 +42,7 @@ public class Paciente {
     private String telefono;
 
 
-    private Paciente(Paciente.Builder builder) {
-        this.id = builder.id;
-    }
-
-    public static class Builder {
-        private Long id;
-        private String nombre;
-        private String apellido;
-        private Integer edad;
-        private String direccion;
-        private String telefono;
 
 
-        public Paciente.Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
 
-        public Paciente.Builder nombre(String nombre) {
-            this.nombre = nombre;
-            return this;
-        }
-
-        public Paciente.Builder apellido(String apellido) {
-            this.apellido = apellido;
-            return this;
-        }
-
-        public Paciente.Builder edad(Integer edad) {
-            this.edad = edad;
-            return this;
-        }
-
-        public Paciente.Builder direccion(String direccion) {
-            this.direccion = direccion;
-            return this;
-        }
-
-        public Paciente.Builder telefono(String telefono) {
-            this.telefono = telefono;
-            return this;
-        }
-
-        public Paciente build() {
-            return new Paciente(this);
-        }
-    }
 }

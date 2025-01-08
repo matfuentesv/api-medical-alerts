@@ -1,8 +1,9 @@
 package cl.medical.controller;
 
 import cl.medical.exception.ApiResponse;
-import cl.medical.model.EntityModel;
+import cl.medical.model.Alerta;
 import cl.medical.model.Paciente;
+import cl.medical.model.SenalVital;
 import cl.medical.service.MedicalAlertService;
 import jakarta.validation.Valid;
 import lombok.extern.java.Log;
@@ -24,7 +25,6 @@ public class MedicalAlertController {
     @Autowired
     MedicalAlertService medicalAlertService;
 
-
     @GetMapping(value = "/findAllPatient", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Paciente>> findAllPatient() {
         log.info("Se solicita la lista de todas las entidades.");
@@ -33,21 +33,19 @@ public class MedicalAlertController {
 
     @GetMapping("/findPatient/{id}")
     public ResponseEntity<Object> findPatient(@PathVariable Long id) {
-
-        if (StringUtils.containsWhitespace(String.valueOf(id))|| id == null) {
-            log.info("El id no se ingreso");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron",false));
+        if (StringUtils.containsWhitespace(String.valueOf(id)) || id == null) {
+            log.info("El id no se ingresó");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron", false));
         }
         return ResponseEntity.ok(medicalAlertService.findPatient(id));
     }
 
     @PostMapping("/createPatient")
     public ResponseEntity<Object> createPatient(@Valid @RequestBody Paciente entity,
-                                             BindingResult bindingResult) throws MethodArgumentNotValidException {
-
+                                                BindingResult bindingResult) throws MethodArgumentNotValidException {
         if (entity == null) {
             log.info("Algunos de los parámetros no se ingresaron");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron",false));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron", false));
         }
 
         if (bindingResult.hasErrors()) {
@@ -57,14 +55,12 @@ public class MedicalAlertController {
         return ResponseEntity.ok(medicalAlertService.createPatient(entity));
     }
 
-
     @PutMapping("/updatePatient")
     public ResponseEntity<Object> updatePatient(@Valid @RequestBody Paciente entity,
-                                             BindingResult bindingResult) throws MethodArgumentNotValidException {
-
+                                                BindingResult bindingResult) throws MethodArgumentNotValidException {
         if (entity == null) {
             log.info("Algunos de los parámetros no se ingresaron");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron",false));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron", false));
         }
 
         if (bindingResult.hasErrors()) {
@@ -76,24 +72,55 @@ public class MedicalAlertController {
 
     @DeleteMapping("/deletePatient/{id}")
     public ResponseEntity<Object> deletePatient(@PathVariable Long id) {
-
-        if (StringUtils.containsWhitespace(String.valueOf(id))|| id == null) {
-            log.info("El id no se ingreso");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron",false));
+        if (StringUtils.containsWhitespace(String.valueOf(id)) || id == null) {
+            log.info("El id no se ingresó");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron", false));
         }
-
 
         Paciente entity = medicalAlertService.findPatient(id);
 
         if (entity.getId() != null) {
             medicalAlertService.deletePatient(id);
-            return ResponseEntity.ok(new ApiResponse("Entidad eliminada",true));
+            return ResponseEntity.ok(new ApiResponse("Entidad eliminada", true));
         } else {
-            log.info("Entidad no encontrado con id: " + id);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Entidad no encontrado",false));
+            log.info("Entidad no encontrada con id: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Entidad no encontrada", false));
         }
     }
 
+    @GetMapping("/findSenalByPacienteId/{pacienteId}")
+    public ResponseEntity<List<SenalVital>> findSenalByPacienteId(@PathVariable Long pacienteId) {
+        log.info("Buscando señales vitales para el paciente con ID: " + pacienteId);
+        return ResponseEntity.ok(medicalAlertService.findSenalByPacienteId(pacienteId));
+    }
+
+    @GetMapping("/findSenalByFechaHora")
+    public ResponseEntity<List<SenalVital>> findByFechaHoraBetween(@RequestParam String start, @RequestParam String end) {
+        log.info("Buscando señales vitales entre: " + start + " y " + end);
+        return ResponseEntity.ok(medicalAlertService.findByFechaHoraBetween(start, end));
+    }
+
+    @GetMapping("/findSenalByFrecuenciaCardiaca")
+    public ResponseEntity<List<SenalVital>> findByFrecuenciaCardiacaGreaterThan(@RequestParam Double frecuencia) {
+        log.info("Buscando señales vitales con frecuencia cardiaca mayor a: " + frecuencia);
+        return ResponseEntity.ok(medicalAlertService.findByFrecuenciaCardiacaGreaterThan(frecuencia));
+    }
+
+    @GetMapping("/findAlertByPacienteId/{pacienteId}")
+    public ResponseEntity<List<Alerta>> findByPacienteId(@PathVariable Long pacienteId) {
+        log.info("Buscando alertas para el paciente con ID: " + pacienteId);
+        return ResponseEntity.ok(medicalAlertService.findByPacienteId(pacienteId));
+    }
+
+    @GetMapping("/findAlertByNivel")
+    public ResponseEntity<List<Alerta>> findByNivel(@RequestParam String nivel) {
+        log.info("Buscando alertas con nivel: " + nivel);
+        return ResponseEntity.ok(medicalAlertService.findByNivel(nivel));
+    }
+
+    @GetMapping("/findAlertByFechaHora")
+    public ResponseEntity<List<Alerta>> findByFechaHoraAfter(@RequestParam String fechaHora) {
+        log.info("Buscando alertas con fecha y hora posterior a: " + fechaHora);
+        return ResponseEntity.ok(medicalAlertService.findByFechaHoraAfter(fechaHora));
+    }
 }
-
-
