@@ -5,7 +5,6 @@ import cl.medical.model.Alerta;
 import cl.medical.model.Paciente;
 import cl.medical.model.SenalVital;
 import cl.medical.service.MedicalAlertService;
-import jakarta.validation.Valid;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +40,7 @@ public class MedicalAlertController {
     }
 
     @PostMapping("/createPatient")
-    public ResponseEntity<Object> createPatient(@Valid @RequestBody Paciente entity,
+    public ResponseEntity<Object> createPatient( @RequestBody Paciente entity,
                                                 BindingResult bindingResult) throws MethodArgumentNotValidException {
         if (entity == null) {
             log.info("Algunos de los parámetros no se ingresaron");
@@ -52,7 +51,7 @@ public class MedicalAlertController {
     }
 
     @PutMapping("/updatePatient")
-    public ResponseEntity<Object> updatePatient(@Valid @RequestBody Paciente entity,
+    public ResponseEntity<Object> updatePatient( @RequestBody Paciente entity,
                                                 BindingResult bindingResult) throws MethodArgumentNotValidException {
         if (entity == null) {
             log.info("Algunos de los parámetros no se ingresaron");
