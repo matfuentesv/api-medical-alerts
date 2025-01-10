@@ -48,10 +48,6 @@ public class MedicalAlertController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron", false));
         }
 
-        if (bindingResult.hasErrors()) {
-            throw new MethodArgumentNotValidException(null, bindingResult);
-        }
-
         return ResponseEntity.ok(medicalAlertService.createPatient(entity));
     }
 
@@ -61,10 +57,6 @@ public class MedicalAlertController {
         if (entity == null) {
             log.info("Algunos de los parámetros no se ingresaron");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron", false));
-        }
-
-        if (bindingResult.hasErrors()) {
-            throw new MethodArgumentNotValidException(null, bindingResult);
         }
 
         return ResponseEntity.ok(medicalAlertService.updatePatient(entity));
