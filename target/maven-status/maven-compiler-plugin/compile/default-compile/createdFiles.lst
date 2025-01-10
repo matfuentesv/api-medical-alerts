@@ -1,0 +1,11 @@
+cl\medical\App.class
+cl\medical\controller\MedicalAlertController.class
+cl\medical\service\impl\MedicalAlertServiceImpl.class
+cl\medical\model\SenalVital.class
+cl\medical\repository\MedicalAlertRepository.class
+cl\medical\repository\SenalVitalRepository.class
+cl\medical\model\Alerta.class
+cl\medical\repository\AlertaRepository.class
+cl\medical\service\MedicalAlertService.class
+cl\medical\model\Paciente.class
+cl\medical\exception\ApiResponse.class
