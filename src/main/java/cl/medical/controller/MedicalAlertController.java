@@ -1,9 +1,7 @@
 package cl.medical.controller;
 
 import cl.medical.exception.ApiResponse;
-import cl.medical.model.Alerta;
 import cl.medical.model.Paciente;
-import cl.medical.model.SenalVital;
 import cl.medical.service.MedicalAlertService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,39 +77,4 @@ public class MedicalAlertController {
         }
     }
 
-    @GetMapping("/findSenalByPacienteId/{pacienteId}")
-    public ResponseEntity<List<SenalVital>> findSenalByPacienteId(@PathVariable Long pacienteId) {
-        log.info("Buscando señales vitales para el paciente con ID: " + pacienteId);
-        return ResponseEntity.ok(medicalAlertService.findSenalByPacienteId(pacienteId));
-    }
-
-    @GetMapping("/findSenalByFechaHora")
-    public ResponseEntity<List<SenalVital>> findByFechaHoraBetween(@RequestParam String start, @RequestParam String end) {
-        log.info("Buscando señales vitales entre: " + start + " y " + end);
-        return ResponseEntity.ok(medicalAlertService.findByFechaHoraBetween(start, end));
-    }
-
-    @GetMapping("/findSenalByFrecuenciaCardiaca")
-    public ResponseEntity<List<SenalVital>> findByFrecuenciaCardiacaGreaterThan(@RequestParam Double frecuencia) {
-        log.info("Buscando señales vitales con frecuencia cardiaca mayor a: " + frecuencia);
-        return ResponseEntity.ok(medicalAlertService.findByFrecuenciaCardiacaGreaterThan(frecuencia));
-    }
-
-    @GetMapping("/findAlertByPacienteId/{pacienteId}")
-    public ResponseEntity<List<Alerta>> findByPacienteId(@PathVariable Long pacienteId) {
-        log.info("Buscando alertas para el paciente con ID: " + pacienteId);
-        return ResponseEntity.ok(medicalAlertService.findByPacienteId(pacienteId));
-    }
-
-    @GetMapping("/findAlertByNivel")
-    public ResponseEntity<List<Alerta>> findByNivel(@RequestParam String nivel) {
-        log.info("Buscando alertas con nivel: " + nivel);
-        return ResponseEntity.ok(medicalAlertService.findByNivel(nivel));
-    }
-
-    @GetMapping("/findAlertByFechaHora")
-    public ResponseEntity<List<Alerta>> findByFechaHoraAfter(@RequestParam String fechaHora) {
-        log.info("Buscando alertas con fecha y hora posterior a: " + fechaHora);
-        return ResponseEntity.ok(medicalAlertService.findByFechaHoraAfter(fechaHora));
-    }
 }
