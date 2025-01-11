@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Log
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class MedicalAlertController {
 
     @Autowired
