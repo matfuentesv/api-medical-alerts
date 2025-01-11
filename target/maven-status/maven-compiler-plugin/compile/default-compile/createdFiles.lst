@@ -1,5 +1,6 @@
 cl\medical\App.class
 cl\medical\repository\MedicalAlertRepository.class
+cl\medical\config\SecurityConfig.class
 cl\medical\controller\MedicalAlertController.class
 cl\medical\service\impl\MedicalAlertServiceImpl.class
 cl\medical\service\MedicalAlertService.class
