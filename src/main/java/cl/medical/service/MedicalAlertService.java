@@ -9,6 +9,6 @@ public interface MedicalAlertService {
     List<Paciente> findAllPatient();
     Paciente findPatient(Long id);
     Paciente createPatient(Paciente patient);
-    Paciente updatePatient(Paciente patient);
+    Paciente updatePatient(Long id,Paciente patient);
     void deletePatient(Long id);
 }

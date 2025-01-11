@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Log
+@CrossOrigin(origins = "http://localhost:4200")
 public class MedicalAlertController {
 
     @Autowired
@@ -48,15 +49,15 @@ public class MedicalAlertController {
         return ResponseEntity.ok(medicalAlertService.createPatient(entity));
     }
 
-    @PutMapping("/updatePatient")
-    public ResponseEntity<Object> updatePatient( @RequestBody Paciente entity,
+    @PutMapping("/updatePatient/{id}")
+    public ResponseEntity<Object> updatePatient(@PathVariable Long id, @RequestBody Paciente entity,
                                                 BindingResult bindingResult) throws MethodArgumentNotValidException {
         if (entity == null) {
             log.info("Algunos de los parámetros no se ingresaron");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Algunos de los parámetros no se ingresaron", false));
         }
 
-        return ResponseEntity.ok(medicalAlertService.updatePatient(entity));
+        return ResponseEntity.ok(medicalAlertService.updatePatient(id,entity));
     }
 
     @DeleteMapping("/deletePatient/{id}")

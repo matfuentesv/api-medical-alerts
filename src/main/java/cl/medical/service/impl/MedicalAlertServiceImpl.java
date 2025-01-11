@@ -34,7 +34,8 @@ public class MedicalAlertServiceImpl implements MedicalAlertService {
     }
 
     @Override
-    public Paciente updatePatient(Paciente entity) {
+    public Paciente updatePatient(Long id,Paciente entity) {
+        entity.setId(id);
         return medicalAlertRepository.save(entity);
     }
 

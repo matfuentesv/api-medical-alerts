@@ -31,29 +31,8 @@ public class Paciente {
     @Column(name = "telefono")
     private String telefono;
 
-    @Column(name = "alertaMensaje")
-    private String alertaMensaje;
-
     @Column(name = "alertaNivel")
     private String alertaNivel;
-
-    @Column(name = "alertaFechaHora")
-    private String alertaFechaHora;
-
-    @Column(name = "frecuenciaCardiaca")
-    private Double frecuenciaCardiaca;
-
-    @Column(name = "presionArterialSistolica")
-    private Double presionArterialSistolica;
-
-    @Column(name = "presionArterialDiastolica")
-    private Double presionArterialDiastolica;
-
-    @Column(name = "temperatura")
-    private Double temperatura;
-
-    @Column(name = "senalVitalFechaHora")
-    private String senalVitalFechaHora;
 
 
     public Long getId() {
@@ -104,67 +83,11 @@ public class Paciente {
         this.telefono = telefono;
     }
 
-    public String getAlertaMensaje() {
-        return alertaMensaje;
-    }
-
-    public void setAlertaMensaje(String alertaMensaje) {
-        this.alertaMensaje = alertaMensaje;
-    }
-
     public String getAlertaNivel() {
         return alertaNivel;
     }
 
     public void setAlertaNivel(String alertaNivel) {
         this.alertaNivel = alertaNivel;
-    }
-
-    public String getAlertaFechaHora() {
-        return alertaFechaHora;
-    }
-
-    public void setAlertaFechaHora(String alertaFechaHora) {
-        this.alertaFechaHora = alertaFechaHora;
-    }
-
-    public Double getFrecuenciaCardiaca() {
-        return frecuenciaCardiaca;
-    }
-
-    public void setFrecuenciaCardiaca(Double frecuenciaCardiaca) {
-        this.frecuenciaCardiaca = frecuenciaCardiaca;
-    }
-
-    public Double getPresionArterialSistolica() {
-        return presionArterialSistolica;
-    }
-
-    public void setPresionArterialSistolica(Double presionArterialSistolica) {
-        this.presionArterialSistolica = presionArterialSistolica;
-    }
-
-    public Double getPresionArterialDiastolica() {
-        return presionArterialDiastolica;
-    }
-
-    public void setPresionArterialDiastolica(Double presionArterialDiastolica) {
-        this.presionArterialDiastolica = presionArterialDiastolica;
-    }
-
-    public Double getTemperatura() {
-        return temperatura;
-    }
-
-    public void setTemperatura(Double temperatura) {
-        this.temperatura = temperatura;
-    }
-
-    public String getSenalVitalFechaHora() {
-        return senalVitalFechaHora;
-    }
-
-    public void setSenalVitalFechaHora(String senalVitalFechaHora) {
-        this.senalVitalFechaHora = senalVitalFechaHora;
     }
 }
