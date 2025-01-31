@@ -16,14 +16,15 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(name = "rut")
+    private String rut;
+
     @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "apellido")
     private String apellido;
-
-    @Column(name = "rut")
-    private String rut;
 
     @Column(name = "fechaNacimiento")
     private String fechaNacimiento;
