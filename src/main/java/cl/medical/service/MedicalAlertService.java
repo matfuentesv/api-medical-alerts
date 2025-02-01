@@ -1,6 +1,7 @@
 package cl.medical.service;
 
 import cl.medical.model.Paciente;
+import cl.medical.model.SignosVitales;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ public interface MedicalAlertService {
     Paciente createPatient(Paciente patient);
     Paciente updatePatient(Long id,Paciente patient);
     void deletePatient(Long id);
+    List<SignosVitales> findSignVitalByPacientee(Long id);
 }

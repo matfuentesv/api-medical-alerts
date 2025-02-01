@@ -2,6 +2,7 @@ package cl.medical.controller;
 
 import cl.medical.exception.ApiResponse;
 import cl.medical.model.Paciente;
+import cl.medical.model.SignosVitales;
 import cl.medical.service.MedicalAlertService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,13 @@ public class MedicalAlertController {
             log.info("Entidad no encontrada con id: " + id);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Entidad no encontrada", false));
         }
+    }
+
+
+    @GetMapping(value = "/findSignVitalByPacientee/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<SignosVitales>> findSignVitalByPacientee(@PathVariable Long id) {
+
+        return ResponseEntity.ok(medicalAlertService.findSignVitalByPacientee(id));
     }
 
 }

@@ -1,7 +1,9 @@
 package cl.medical.service.impl;
 
 import cl.medical.model.Paciente;
+import cl.medical.model.SignosVitales;
 import cl.medical.repository.MedicalAlertRepository;
+import cl.medical.repository.SignsVitalRepository;
 import cl.medical.service.MedicalAlertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ public class MedicalAlertServiceImpl implements MedicalAlertService {
 
     @Autowired
     private MedicalAlertRepository medicalAlertRepository;
+
+    @Autowired
+    private SignsVitalRepository signsVitalRepository;
 
 
     @Override
@@ -44,7 +49,10 @@ public class MedicalAlertServiceImpl implements MedicalAlertService {
         medicalAlertRepository.deleteById(id);
     }
 
-
+    @Override
+    public List<SignosVitales> findSignVitalByPacientee(Long id) {
+        return signsVitalRepository.findSignVitalByPacientee(id);
+    }
 
 
 }
