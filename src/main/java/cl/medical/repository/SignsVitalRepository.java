@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SignsVitalRepository extends JpaRepository<SignosVitales, Long> {
 
-    @Query(value = "SELECT * FROM signos_vitales WHERE paciente_id = :pacienteId", nativeQuery = true)
-    List<SignosVitales> findSignVitalByPacientee(@Param("pacienteId") Long pacienteId);
+    @Query(value = "SELECT * FROM signos_vitales WHERE paciente_id = :id", nativeQuery = true)
+    List<SignosVitales> findSignVitalByPacientee(@Param("id") Long id);
 
 }

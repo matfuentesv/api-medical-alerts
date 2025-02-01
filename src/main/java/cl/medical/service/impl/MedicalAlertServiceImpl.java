@@ -51,7 +51,8 @@ public class MedicalAlertServiceImpl implements MedicalAlertService {
 
     @Override
     public List<SignosVitales> findSignVitalByPacientee(Long id) {
-        return signsVitalRepository.findSignVitalByPacientee(id);
+        List<SignosVitales> list  = signsVitalRepository.findSignVitalByPacientee(id);
+        return list;
     }
 
 
