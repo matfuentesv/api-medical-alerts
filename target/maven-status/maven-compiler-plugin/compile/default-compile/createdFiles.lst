@@ -1,3 +1,10 @@
+cl\medical\App.class
 cl\medical\repository\MedicalAlertRepository.class
+cl\medical\config\SecurityConfig.class
+cl\medical\controller\MedicalAlertController.class
+cl\medical\repository\SignsVitalRepository.class
+cl\medical\model\SignosVitales.class
+cl\medical\service\impl\MedicalAlertServiceImpl.class
 cl\medical\service\MedicalAlertService.class
 cl\medical\model\Paciente.class
+cl\medical\exception\ApiResponse.class
